@@ -15,7 +15,7 @@ const App = () => {
             {
               name: 'video1.mp4',
               type: 'video',
-              url: 'https://example.com/video1.mp4',
+              url: 'http://localhost:8000/test.mov',
               mimeType: 'video/mp4',
             },
           ],
@@ -23,7 +23,7 @@ const App = () => {
         {
           name: 'video1.mp4',
           type: 'video',
-          url: 'https://example.com/video1.mp4',
+          url: 'http://localhost:8000/test.mov',
           mimeType: 'video/mp4',
         },
       ],
@@ -31,7 +31,7 @@ const App = () => {
     {
       name: 'video2.mp4',
       type: 'video',
-      url: 'https://example.com/video2.mp4',
+      url: 'http://localhost:8000/test.mov',
       mimeType: 'video/mp4',
     },
   ];

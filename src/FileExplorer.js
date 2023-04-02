@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { VideoPlayer } from './VideoPlayer';
+import { VideoModal } from './VideoModal';
 
 export const FileExplorer = ({ files }) => {
   const [currentPath, setCurrentPath] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
   const navigateTo = (path) => {
     setCurrentPath(path);
@@ -10,6 +12,14 @@ export const FileExplorer = ({ files }) => {
 
   const navigateUp = () => {
     setCurrentPath(currentPath.slice(0, -1));
+  };
+
+  const openVideoModal = (file) => {
+    setSelectedVideo(file);
+  };
+
+  const closeVideoModal = () => {
+    setSelectedVideo(null);
   };
 
   const renderFiles = () => {
@@ -23,7 +33,11 @@ export const FileExplorer = ({ files }) => {
           </div>
         );
       } else if (file.type === 'video') {
-        return <VideoPlayer key={index} file={file} />;
+        return (
+          <div key={index} onClick={() => openVideoModal(file)}>
+            <VideoPlayer file={file} />
+          </div>
+        );
       }
     });
   };
@@ -34,6 +48,9 @@ export const FileExplorer = ({ files }) => {
         <button onClick={navigateUp}>Retour</button>
       )}
       <div>{renderFiles()}</div>
+      {selectedVideo && (
+        <VideoModal file={selectedVideo} closeModal={closeVideoModal} />
+      )}
     </div>
   );
 };
